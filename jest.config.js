@@ -1,0 +1,26 @@
+module.exports = {
+  testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
+  setupFilesAfterEnv: ["<rootDir>/setupTests.js"],
+  transform: {
+    "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+    "^.+\\.svg$": "<rootDir>/config/jest/fileTransform.js",
+  },
+  modulePaths: ["<rootDir>"],
+  moduleDirectories: ["node_modules", "src"],
+  moduleNameMapper: {
+    "^@root(.*)$": "<rootDir>/src$1",
+    "^@components(.*)$": "<rootDir>/src/components$1",
+    "^@contexts": "<rootDir>/src/contexts$1",
+    "^@constants": "<rootDir>/src/appConstants.ts",
+    "^@services": "<rootDir>/src/services",
+    "^@models": "<rootDir>/src/models",
+    "^@hook": "<rootDir>/src/hooks",
+    "^@pages-components": "<rootDir>/src/pages-components",
+    "^@tests(.*)$": "<rootDir>/src/tests$1",
+    "^@mocks(.*)$": "<rootDir>/src/mocks$1",
+    "^.+\\.module\\.(css|sass|scss|svg)$": "identity-obj-proxy",
+    "^@utils(.*)$": "<rootDir>/src/utils$1",
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+  },
+};
