@@ -7,8 +7,9 @@
     "start": "next start",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "test": "jest --watchAll",
-    "test:coverage": "jest --coverage --silent --passWithNoTests"
+    "test": "jest",
+    "test:coverage": "jest --coverage --silent --passWithNoTests",
+    "test:watch": "jest --coverage --silent --passWithNoTests"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.7.2",
