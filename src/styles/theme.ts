@@ -1,7 +1,7 @@
 import { extendTheme } from "@chakra-ui/react";
 
 const colors = {
-  primaryGray: "#27E8A7",
+  primaryGreen: "#27E8A7",
   lightBlue: "#1DC6F5",
   error: "#F20530",
   white: "#FFFFFF",
