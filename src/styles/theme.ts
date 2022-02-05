@@ -8,6 +8,7 @@ const colors = {
   error: "#F20530",
   white: "#FFFFFF",
   black: "#111111",
+  background: "#17181B",
   purple: "#A259FF",
   gray: {
     700: "#282A2D",
