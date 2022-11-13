@@ -5,15 +5,37 @@ interface ButtonProps extends BaseProps {
 }
 
 export function Button(props: ButtonProps) {
+  const color = activeColor();
+  const background = backgroundColor();
+
+  function activeColor(): string {
+    if (props.scheme === "blue") {
+      return "lightBlueHover"
+    }
+    return "primaryGreenHover"
+  }
+
+  function backgroundColor(): string {
+    if (props.variant === 'outline') {
+      return "transparent";
+    }
+
+    if (props.scheme === "blue") {
+      return "lightBlue"
+    }
+
+    return "primaryGreen"
+  }
+
   return (
     <Base
-      backgroundColor={props.scheme === "green" ? "primaryGreen" : "lightBlue"}
-      border="0px"
+      backgroundColor={background}
+      borderColor={color}
       _hover={{
-        bg: props.scheme === "green" ? "primaryGreenHover" : "lightBlueHover",
+        bg: color
       }}
       _active={{
-        bg: props.scheme === "green" ? "primaryGreenHover" : "lightBlueHover",
+        bg: color,
         border: 0,
       }}
       textColor="white"

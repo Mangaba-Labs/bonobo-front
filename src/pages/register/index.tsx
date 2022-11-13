@@ -2,7 +2,7 @@ import { Box, Text } from "@chakra-ui/layout";
 import { Heading, Link } from "@chakra-ui/react";
 import { Background, Button, Input, LogoWithText } from "../../components";
 
-export default function Login() {
+export default function Register() {
   return (
     <Background>
       <Box pl="4%" pt="2%" position="absolute">
@@ -20,7 +20,7 @@ export default function Login() {
       >
         <Box height="28rem" width="40rem">
           <Heading color="white" fontSize="4rem" mb="2rem">
-            Welcome !
+            Register
           </Heading>
           <Text color="white" width="85%">
             Welcome to Bonobo store, where you can buy any digital asset that
@@ -36,7 +36,7 @@ export default function Login() {
           backgroundColor="gray.700"
           display="flex"
           alignItems="center"
-          height="28rem"
+          height="36rem"
           justifyContent="center"
           flexDirection="column"
           pb="1rem"
@@ -46,33 +46,19 @@ export default function Login() {
           <Heading
             color="white"
             fontSize="2.8rem"
-            alignText="left"
+            textAlign="left"
             mb=".9rem"
             width="100%"
           >
-            Login
+            Register
           </Heading>
+          <Input my="1rem" placeholder="Name" />
           <Input my="1rem" placeholder="Email" />
           <Input my="1rem" placeholder="Password" />
-          <Link
-            href="/recover-password"
-            color="primaryGreen"
-            textAlign="right"
-            width="100%"
-          >
-            Forgot password?
-          </Link>
-          <Button scheme="green" my="1rem" textColor="black">
-            Login
+          <Input my="1rem" placeholder="Confirm Password" />
+          <Button scheme="green" mt="3rem" textColor="black">
+            Create account
           </Button>
-          <Box>
-            <Text color="white" textAlign="left" fontSize="1rem" width="100%">
-              {"Doesn't have an account yet? "}
-              <Link href="/register" fontWeight="bold" color="primaryGreen">
-                Sign Up
-              </Link>
-            </Text>
-          </Box>
         </Box>
       </Box>
     </Background>
