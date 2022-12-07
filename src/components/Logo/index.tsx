@@ -2,8 +2,8 @@ import { Box } from "@chakra-ui/react";
 import Bonobo from "../../assets/images/bonobo-raw.svg";
 
 type LogoProps = {
-  height?: number;
-  width?: number;
+  height?: number | string;
+  width?: number | string;
   my?: number;
   mx?: number;
   ml?: number;
@@ -20,7 +20,7 @@ export function Logo(props: LogoProps) {
       borderRadius="50%"
       data-testid="logo"
       display="flex"
-      height={props.height ? props.height : 120}
+      height={props.height ? props.height : "2.5rem"}
       justifyContent="center"
       my={props.my}
       mx={props.mx}
@@ -29,12 +29,14 @@ export function Logo(props: LogoProps) {
       mt={props.mt}
       mb={props.mb}
       p={5}
-      width={props.width ? props.width : 120}
+      width={props.width ? props.width : "2.5rem"}
     >
-      <Bonobo
-        height={props.height ? props.height : 120}
-        width={props.width ? props.width : 120}
-      />
+      <Box>
+        <Bonobo
+          width={props.width ? props.width : "2em"}
+          height={props.height ? props.height : "2em"}
+        />
+      </Box>
     </Box>
   );
 }
