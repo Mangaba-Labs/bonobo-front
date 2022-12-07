@@ -1,8 +1,62 @@
 import { Box, Text } from "@chakra-ui/layout";
 import { Heading, Link } from "@chakra-ui/react";
+import { useState } from "react";
 import { Background, Button, Input, LogoWithText } from "../../components";
+import NProgress from "nprogress";
+import { AuthService } from "../../services";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
+import { useMount } from "../../hooks";
+import { AuthHelper } from "../../helpers/AuthHelper";
 
 export default function Login() {
+  const router = useRouter();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  useMount(() => {
+    if (!AuthHelper.isAccessTokenExpired()) {
+      router.push("/");
+    }
+  });
+
+  function onClickLogin() {
+    NProgress.start();
+    AuthService.auth(username, password)
+      .then((res) => {
+        handleSuccessSignIn(res);
+      })
+      .catch((e) => {
+        callToast(e.status);
+        console.warn(e);
+      })
+      .finally(() => NProgress.done());
+  }
+
+  function handleSuccessSignIn(response: any) {
+    toast.success(`😀	Welcome back`);
+    localStorage.setItem("access-token", response.data.access_token);
+    router.push("/");
+  }
+
+  function callToast(status: number) {
+    switch (status) {
+      case 403:
+        toast.warn(`😥 Invalid email or password`);
+        break;
+      default:
+        toast.error(`😥 An unexpected error occured`);
+    }
+  }
+
+  function onChangeUsername(e: any) {
+    setUsername(e.target.value);
+  }
+
+  function onChangePassword(e: any) {
+    setPassword(e.target.value);
+  }
+
   return (
     <Background>
       <Box pl="4%" pt="2%" position="absolute">
@@ -46,14 +100,25 @@ export default function Login() {
           <Heading
             color="white"
             fontSize="2.8rem"
-            alignText="left"
+            textAlign="left"
             mb=".9rem"
             width="100%"
           >
             Login
           </Heading>
-          <Input my="1rem" placeholder="Email" />
-          <Input my="1rem" placeholder="Password" />
+          <Input
+            onChange={onChangeUsername}
+            value={username}
+            my="1rem"
+            placeholder="Email"
+          />
+          <Input
+            onChange={onChangePassword}
+            value={password}
+            my="1rem"
+            placeholder="Password"
+            type="password"
+          />
           <Link
             href="/recover-password"
             color="primaryGreen"
@@ -62,7 +127,12 @@ export default function Login() {
           >
             Forgot password?
           </Link>
-          <Button scheme="green" my="1rem" textColor="black">
+          <Button
+            scheme="green"
+            my="1rem"
+            textColor="black"
+            onClick={onClickLogin}
+          >
             Login
           </Button>
           <Box>

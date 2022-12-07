@@ -12,7 +12,6 @@ export function Input(props: InputProps) {
     if (props.type === "email") {
       console.log("email");
     }
-    console.log("focus out");
   }
   return (
     <Base

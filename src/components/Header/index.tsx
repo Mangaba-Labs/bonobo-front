@@ -2,13 +2,14 @@
 import { Box, Link, Text } from "@chakra-ui/layout";
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
-import React from "react";
+import React, { useState } from "react";
 import { Logo } from "..";
 import AccountCircle from "../../assets/images/account_circle.svg";
 import Cart from "../../assets/images/cart.svg";
+import { AuthHelper } from "../../helpers/AuthHelper";
 
 export function Header() {
-  const isLogged = true;
+  const [isLogged, _] = useState(!AuthHelper.isAccessTokenExpired());
 
   return (
     <Box>
